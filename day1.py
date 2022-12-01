@@ -1,5 +1,4 @@
-with open('day1.data') as f:
-    lst = [int(i.replace('\n','')) if i != '\n' else '' for i in f]
+lst = [int(i.replace('\n','')) if i != '\n' else '' for i in open('day1.data')]
 
 cals =[]
 c = 0
