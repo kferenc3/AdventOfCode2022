@@ -1,28 +1,37 @@
-sections = [z.replace('\n','').split(',') for z in open('day4test.data')]
 
-elf_1_ranges = []
-elf_2_ranges = []
-
-for x in sections:
-    for y in range(len(x)):
-        if y == 0:
-            elf_1_ranges.append(set(range(int(x[y].split('-')[0]),int(x[y].split('-')[1])+1)))
-        else:
-            elf_2_ranges.append(set(range(int(x[y].split('-')[0]),int(x[y].split('-')[1])+1)))
+def data_processor(f: str):
+    sections = [z.replace('\n','').split(',') for z in open(f)]
+    e1 = []
+    e2 = []
+    for x in sections:
+        for y in range(len(x)):
+            if y == 0:
+                e1.append(set(range(int(x[y].split('-')[0]),int(x[y].split('-')[1])+1)))
+            else:
+                e2.append(set(range(int(x[y].split('-')[0]),int(x[y].split('-')[1])+1)))
+    return e1, e2
   
-i = 0
-for x in range(len(elf_1_ranges)):
-    if elf_1_ranges[x].issubset(elf_2_ranges[x]) or elf_1_ranges[x].issuperset(elf_2_ranges[x]):
-        i += 1
+def full_overlap(e1,e2):
+    i = 0
+    for x in range(len(e1)):
+        if e1[x].issubset(e2[x]) or e1[x].issuperset(e2[x]):
+            i += 1
+    return i
 
-#Part I answer
-print(i)
+def partial_overlap(e1,e2):
+    i = 0
+    for x in range(len(e1)):
+        if not e1[x].isdisjoint(e2[x]):
+            i += 1
+    return i
 
-i = 0
 
-for x in range(len(elf_1_ranges)):
-    if not elf_1_ranges[x].isdisjoint(elf_2_ranges[x]):
-        i += 1
-
-#Part II answer
-print(i)
+if __name__ == '__main__':
+    
+    elf_1_ranges, elf_2_ranges = data_processor('day4.data')
+    
+    #Part I answer
+    print(full_overlap(elf_1_ranges,elf_2_ranges))
+    
+    #Part II answer
+    print(partial_overlap(elf_1_ranges,elf_2_ranges))
