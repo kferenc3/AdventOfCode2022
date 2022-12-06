@@ -1,7 +1,7 @@
 def char_parser(flnm, charlen):
     raw = open(flnm).readline()
     for x in range(len(raw)):
-        if len(raw[x:x+charlen]) == len(set(raw[x:x+charlen])):
+        if len(set(raw[x:x+charlen])) == charlen:
             return x+charlen
 
 
