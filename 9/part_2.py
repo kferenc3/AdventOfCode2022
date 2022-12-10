@@ -38,32 +38,19 @@ def h_mover(direction, steps, m):
     else:
         coord = 0
 
-    for i in range(steps):
+    for _ in range(steps):
         m[coord] += 1 * x
         res.append(m.copy())
     return res
 
 
 if __name__ == '__main__':
+
+    instructions = [(x, int(y)) for x,y in [z.split() for z in open('day_9_test.data')]]
+
     
-    visited = []
+    H = [0,0]
     moves = []
-    H = [0,0]
-    T = [0,0]
-
-    instructions = [(x, int(y)) for x,y in [z.split() for z in open('day9.data')]]
-
-    for x in instructions:
-        for y in h_mover(x[0],x[1],H):
-            T = t_mover(T,y)
-            if T not in visited:
-                visited.append(T.copy())
-    
-    "Part I answer"
-    print(len(visited))
-    
-    
-    H = [0,0]
     visited = []
     temp_list = []
     ropes = {1: [0,0], 2: [0,0], 3: [0,0], 4: [0,0], 5: [0,0], 6: [0,0], 7: [0,0], 8: [0,0], 9: [0,0]}

@@ -7,7 +7,5 @@ def char_parser(flnm, charlen):
 
 if __name__ == '__main__':
 
-    #Part I answer:
-    print(char_parser('day6.data',4))
     #Part II answer:
-    print(char_parser('day6.data',14))
+    print(char_parser('day_6_test.data',14))
