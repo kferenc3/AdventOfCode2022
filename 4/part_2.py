@@ -10,13 +10,6 @@ def data_processor(f: str):
             else:
                 e2.append(set(range(int(x[y].split('-')[0]),int(x[y].split('-')[1])+1)))
     return e1, e2
-  
-def full_overlap(e1,e2):
-    i = 0
-    for x in range(len(e1)):
-        if e1[x].issubset(e2[x]) or e1[x].issuperset(e2[x]):
-            i += 1
-    return i
 
 def partial_overlap(e1,e2):
     i = 0
@@ -28,10 +21,7 @@ def partial_overlap(e1,e2):
 
 if __name__ == '__main__':
     
-    elf_1_ranges, elf_2_ranges = data_processor('day4.data')
-    
-    #Part I answer
-    print(full_overlap(elf_1_ranges,elf_2_ranges))
+    elf_1_ranges, elf_2_ranges = data_processor('day_4_test.data')
     
     #Part II answer
     print(partial_overlap(elf_1_ranges,elf_2_ranges))

@@ -26,27 +26,6 @@ instructions = inputprocessor('day10.data')
 x = 1
 y = 0
 cycle = 1
-strength = 0
-while cycle != 221:
-    x += y
-    y = 0
-    if cycle  in [20, 60, 100, 140, 180, 220]:
-        strength += x * cycle
-    i = instructions.pop(0)
-    if i == 'addx' or i == 'noop':
-        pass
-        cycle += 1
-    else:
-        y += i
-        cycle +=1
-    
-# Part I answer:
-print(strength)
-
-instructions = inputprocessor('day10.data')
-x = 1
-y = 0
-cycle = 1
 pos = 0
 ln1 = []
 ln2 = [] 

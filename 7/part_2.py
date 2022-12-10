@@ -31,14 +31,6 @@ while cmd:
         else:
             cmd.remove(x)
 
-total = 0
-for key, value in dirsize.items():
-    if value <= 100000:
-        total += value
-
-#Part I answer:
-print(total)
-
 disk_space = 70000000
 available_space = disk_space - dirsize[next(iter(dirsize))]
 req_space = 30000000 - available_space

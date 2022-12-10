@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
-
+import os
+os.chdir(os.getcwd()+'/5')
 def df_creator(s):
     ln = []
     df = []
@@ -36,7 +37,7 @@ def part_1(flnm):
                 stacks.iloc[max(pd.isnull(stacks.iloc[:,stack_to[x]]).to_numpy().nonzero()[0]),stack_to[x]] = stacks.iat[stacks.iloc[:,stack_from[x]].first_valid_index(),stack_from[x]]
                 stacks.iat[stacks.iloc[:,stack_from[x]].first_valid_index(),stack_from[x]] = np.nan
             except ValueError:
-                df = pd.DataFrame(index=np.arange(1),columns=np.arange(9))
+                df = pd.DataFrame(index=np.arange(1),columns=np.arange(3))
                 stacks = pd.concat([df,stacks.loc[:]]).reset_index(drop=True)
                 stacks.iloc[max(pd.isnull(stacks.iloc[:,stack_to[x]]).to_numpy().nonzero()[0]),stack_to[x]] = stacks.iat[stacks.iloc[:,stack_from[x]].first_valid_index(),stack_from[x]]
                 stacks.iat[stacks.iloc[:,stack_from[x]].first_valid_index(),stack_from[x]] = np.nan
@@ -45,27 +46,7 @@ def part_1(flnm):
         ans.append(stacks.iat[stacks.iloc[:,x].first_valid_index(),x])
     return ans
 
-def part_2(flnm):
-    crates, stack_from, stack_to, stacks = data_process(flnm)
-    for x in range(len(crates)):
-        #print(list(range(crates[x]-1,-1,-1)))
-        for y in range(crates[x]-1,-1,-1):
-            try:
-                stacks.iloc[max(pd.isnull(stacks.iloc[:,stack_to[x]]).to_numpy().nonzero()[0]),stack_to[x]] = stacks.iat[stacks.iloc[:,stack_from[x]].first_valid_index()+y,stack_from[x]]
-                stacks.iat[stacks.iloc[:,stack_from[x]].first_valid_index()+y,stack_from[x]] = np.nan
-            except ValueError:
-                df = pd.DataFrame(index=np.arange(1),columns=np.arange(9))
-                stacks = pd.concat([df,stacks.loc[:]]).reset_index(drop=True)
-                stacks.iloc[max(pd.isnull(stacks.iloc[:,stack_to[x]]).to_numpy().nonzero()[0]),stack_to[x]] = stacks.iat[stacks.iloc[:,stack_from[x]].first_valid_index()+y,stack_from[x]]
-                stacks.iat[stacks.iloc[:,stack_from[x]].first_valid_index()+y,stack_from[x]] = np.nan
-    ans = []
-    for x in stacks:
-        ans.append(stacks.iat[stacks.iloc[:,x].first_valid_index(),x])
-    return ans
-
 
 if __name__ == '__main__':
     #Part I answer:
-    print(part_1('day5.data'))   
-    #Part II answer:
-    print(part_2('day5.data'))
+    print(part_1('day_5_test.data'))
